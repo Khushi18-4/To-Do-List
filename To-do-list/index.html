@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rainbow Task Fusion | To-Do</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="todo-wrapper">
+        <!-- Rainbow Animated Banner Header -->
+        <header class="rainbow-header">
+            <h1>Task Fusion</h1>
+            <p>Manage your reality in full spectrum</p>
+        </header>
+
+        <!-- Input Section -->
+        <form id="todo-form" class="todo-input-area">
+            <input type="text" id="todo-input" placeholder="Create a colorful task..." required autocomplete="off">
+            <button type="submit" id="add-btn">Add Task</button>
+        </form>
+
+        <!-- Dynamic Controls & Advanced Filters -->
+        <div class="todo-controls">
+            <span id="task-counter">0 tasks left</span>
+            <div class="filter-group">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="active">Active</button>
+                <button class="filter-btn" data-filter="completed">Completed</button>
+            </div>
+            <button id="clear-completed-btn">Clear Done</button>
+        </div>
+
+        <!-- Dynamic List Container (DOM Injection Point) -->
+        <ul id="todo-list" class="todo-list"></ul>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+/* ==========================================================================
+   1. CYBERPUNK RAINBOW VARIABLES & CONFIGURATION
+   ========================================================================== */
+:root {
+    --bg-dark: #090d16;
+    --bg-card: rgba(20, 27, 45, 0.7);
+    --border-glow: rgba(255, 255, 255, 0.1);
+    --text-pure: #ffffff;
+    --text-dim: #8b9bb4;
+    
+    /* Rainbow Spectrum Codes */
+    --rainbow-grad: linear-gradient(45deg, #ff0055, #00ff66, #00ffff, #ff00ff, #ffcc00, #ff0055);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-pure);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   2. MAIN CONTAINER & ANIMATED RAINBOW HEADER
+   ========================================================================== */
+.todo-wrapper {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    width: 100%;
+    max-width: 550px;
+    border-radius: 24px;
+    border: 1px solid var(--border-glow);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 40px rgba(0, 242, 254, 0.05);
+    overflow: hidden;
+}
+
+.rainbow-header {
+    background: var(--rainbow-grad);
+    background-size: 400% 400%;
+    animation: rainbowShift 12s ease infinite;
+    padding: 35px 25px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-glow);
+}
+
+@keyframes rainbowShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.rainbow-header h1 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+    text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.rainbow-header p {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    margin-top: 5px;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   3. INPUT FORMS & INTERACTIVE BUTTONS
+   ========================================================================== */
+.todo-input-area {
+    display: flex;
+    padding: 25px;
+    gap: 12px;
+}
+
+#todo-input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid var(--border-glow);
+    padding: 14px 20px;
+    border-radius: 14px;
+    color: var(--text-pure);
+    font-size: 1rem;
+    transition: var(--transition-smooth);
+}
+
+#todo-input:focus {
+    outline: none;
+    border-color: #00ffff;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+}
+
+#add-btn {
+    background: var(--rainbow-grad);
+    background-size: 200% 200%;
+    color: white;
+    font-weight: 700;
+    border: none;
+    padding: 0 24px;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+#add-btn:hover {
+    background-position: right center;
+    box-shadow: 0 0 20px rgba(255, 0, 85, 0.4);
+    transform: scale(1.03);
+}
+
+/* ==========================================================================
+   4. ADVANCED CONTROLS & CONTRAST FILTER BAR
+   ========================================================================== */
+.todo-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px 20px 25px;
+    border-bottom: 1px solid var(--border-glow);
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.filter-group {
+    display: flex;
+    background: rgba(255,255,255,0.03);
+    padding: 4px;
+    border-radius: 10px;
+    border: 1px solid var(--border-glow);
+}
+
+.filter-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    padding: 6px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition-smooth);
+}
+
+.filter-btn.active, .filter-btn:hover {
+    color: var(--text-pure);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#clear-completed-btn {
+    background: transparent;
+    border: none;
+    color: #ff0055;
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition-smooth);
+}
+#clear-completed-btn:hover { text-shadow: 0 0 8px rgba(255, 0, 85, 0.5); }
+
+/* ==========================================================================
+   5. DYNAMIC INJECTED TODO ITEMS (DELEGATED LIST)
+   ========================================================================== */
+.todo-list {
+    list-style: none;
+    padding: 10px 25px 25px 25px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.02);
+    padding: 16px 20px;
+    border-radius: 14px;
+    margin-bottom: 12px;
+    border: 1px solid var(--border-glow);
+    animation: fadeIn 0.3s ease;
+    transition: var(--transition-smooth);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.todo-item:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(0, 255, 255, 0.3);
+}
+
+.todo-item-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+}
+
+/* Custom Prismatic Checkbox */
+.todo-checkbox {
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--text-dim);
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    transition: var(--transition-smooth);
+}
+
+.todo-checkbox:checked {
+    background: var(--rainbow-grad);
+    border-color: transparent;
+}
+
+.todo-checkbox:checked::after {
+    content: '✓';
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.todo-text {
+    font-size: 1rem;
+    color: var(--text-pure);
+    word-break: break-all;
+    transition: var(--transition-smooth);
+}
+
+/* Edit State Input field */
+.edit-input {
+    background: #090d16;
+    border: 1px solid #00ffff;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 1rem;
+    width: 90%;
+}
+
+/* Completed Strike Mode */
+.todo-item.completed .todo-text {
+    text-decoration: line-through;
+    color: var(--text-dim);
+    opacity: 0.5;
+}
+
+/* Action Buttons Inside Task Rows */
+.action-group {
+    display: flex;
+    gap: 8px;
+}
+
+.action-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    color: var(--text-dim);
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: var(--transition-smooth);
+}
+
+.edit-btn:hover { color: #ffcc00; background: rgba(255, 204, 0, 0.1); }
+.delete-btn:hover { color: #ff0055; background: rgba(255, 0, 85, 0.1); }
